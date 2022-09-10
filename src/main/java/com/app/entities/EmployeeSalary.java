@@ -1,6 +1,7 @@
 package com.app.entities;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,10 +22,12 @@ import lombok.ToString;
 public class EmployeeSalary {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int salary_id;
+	@Column(name="salary_id")
+	private int salaryId;
 	
 	private double amount;
-	private LocalDate assigned_date;
+	@Column(name="assigned_date")
+	private LocalDate assignedDate;
 	@OneToMany
 	@JoinColumn(name="employee_id")
 	private Employee employee;

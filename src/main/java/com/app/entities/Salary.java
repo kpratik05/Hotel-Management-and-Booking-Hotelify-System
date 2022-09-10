@@ -24,6 +24,7 @@ import lombok.ToString;
 public class Salary {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="salary_id")
 	private int salaryId;
 	private double amount;
 	@Column(name="assigned_date")

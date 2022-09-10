@@ -1,5 +1,6 @@
 package com.app.entities;
 
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,8 @@ import lombok.Setter;
 public class Employee extends Person {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int employee_id;
+	@Column(name="employee_id")
+	private int employeeId;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="dept_id")

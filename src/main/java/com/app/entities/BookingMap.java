@@ -20,7 +20,7 @@ import lombok.ToString;
 public class BookingMap {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int map_id;
+	private int mapId;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="cat_id")
 	private RoomCategory roomCategory;

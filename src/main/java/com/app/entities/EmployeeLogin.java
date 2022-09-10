@@ -2,6 +2,7 @@ package com.app.entities;
 import java.sql.Time;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,10 +23,12 @@ import lombok.ToString;
 public class EmployeeLogin {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int login_id;
-	
-	private Time login_time;
-	private Time logout_time;
+	@Column(name="login_id")
+	private int loginId;
+	@Column(name="login_time")
+	private Time loginTime;
+	@Column(name="logout_time")
+	private Time logoutTime;
 	private LocalDate date;
 	@OneToMany
 	@JoinColumn(name="employee_id")

@@ -23,6 +23,7 @@ import lombok.ToString;
 public class Payment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="payment_id")
 	private int paymentId;
 	@Column(name="payment_date")
 	private LocalDate paymentDate;

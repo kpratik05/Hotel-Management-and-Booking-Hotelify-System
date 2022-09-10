@@ -1,4 +1,5 @@
 package com.app.entities;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,8 +22,11 @@ import lombok.ToString;
 public class Room {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int room_id;
-	private int floor_num;
+	@Column(name="room_id")
+	private int roomId;
+	@Column(name="floor_num")
+	private int floorNum;
+	@Column(name="unit_price")
 	private double unitPrice;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="cat_id")

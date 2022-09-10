@@ -24,10 +24,12 @@ import lombok.ToString;
 public class ShiftTable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int shift_id;
-	
-	private Time start_time;
-	private Time end_time;
+	@Column(name="shift_id")
+	private int shiftId;
+	@Column(name="start_time")
+	private Time startTime;
+	@Column(name="end_time")
+	private Time endTime;
 	private LocalDate date;
 	@Column(length=100)
 	private String instructions;

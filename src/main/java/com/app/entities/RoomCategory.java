@@ -19,9 +19,10 @@ import lombok.ToString;
 public class RoomCategory {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int cat_id;
-	@Column(length=20)
-	private String cat_name;
-	@Column(length=50)
-	private String cat_desc;
+	@Column(name="cat_id")
+	private int catId;
+	@Column(length=20,name="cat_name")
+	private String catName;
+	@Column(length=50,name="cat_desc")
+	private String catDesc;
 }

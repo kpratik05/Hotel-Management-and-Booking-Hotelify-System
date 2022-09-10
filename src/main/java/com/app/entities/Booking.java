@@ -13,15 +13,15 @@ import java.time.LocalDate;
 public class Booking {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int booking_id;
-	private LocalDate booking_date;
-	private LocalDate check_in_date;
-	private LocalDate check_out_date;
+	private int bookingId;
+	private LocalDate bookingDate;
+	private LocalDate checkInDate;
+	private LocalDate checkOutDate;
 	@Embedded
 	private BookingMode mode;
-	private double booking_amount;
-	private int total_days;
-	private double total_amount;
+	private double bookingAmount;
+	private int totalDays;
+	private double totalAmount;
 	@Embedded
 	private Status status;
 	@OneToMany

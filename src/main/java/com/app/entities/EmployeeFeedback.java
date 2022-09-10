@@ -22,7 +22,8 @@ import lombok.ToString;
 public class EmployeeFeedback {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int employeefeedback_id;
+	@Column(name="employeefeedback_id")
+	private int employeeFeedbackId;
 	@Column(length=50)
 	private String feedback;
 	private LocalDate date;

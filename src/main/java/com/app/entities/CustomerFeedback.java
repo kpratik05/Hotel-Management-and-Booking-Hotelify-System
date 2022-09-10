@@ -20,9 +20,11 @@ import lombok.ToString;
 public class CustomerFeedback {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int cfeedback_id;
+	@Column(name="cfeedback_id")
+	private int cfeedbackId;
 	@Column(length=50)
 	private String feedback;
 	private LocalDate date;
-	private String booking_id;
+	@Column(name="booking_id")
+	private int bookingId;
 }
