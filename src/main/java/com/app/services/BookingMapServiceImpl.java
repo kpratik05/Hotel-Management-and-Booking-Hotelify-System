@@ -11,7 +11,7 @@ import com.app.entities.BookingMap;
 
 @Service
 @Transactional
-public class BookingMapService implements IBookingMapService{
+public class BookingMapServiceImpl implements IBookingMapService{
 	
 	@Autowired
 	private IBookingMapRepo bookingMapRepo;

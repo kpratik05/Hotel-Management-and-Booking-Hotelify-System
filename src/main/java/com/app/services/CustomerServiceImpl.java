@@ -9,7 +9,7 @@ import com.app.entities.Customer;
 
 @Service
 @Transactional
-public class CustomerService implements ICustomerService {
+public class CustomerServiceImpl implements ICustomerService {
 	
 	@Autowired
 	private ICustomerRepo custRepo;
