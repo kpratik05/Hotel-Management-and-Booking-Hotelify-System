@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +23,9 @@ public class RoomCategory {
 	@Column(name="cat_id")
 	private int catId;
 	@Column(length=20,name="cat_name")
+	@NotNull
 	private String catName;
 	@Column(length=50,name="cat_desc")
+	@NotNull
 	private String catDesc;
 }

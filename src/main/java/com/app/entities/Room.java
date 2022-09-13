@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,11 +25,15 @@ public class Room {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="room_id")
 	private int roomId;
+	
 	@Column(name="floor_num")
+	@NotNull
 	private int floorNum;
 	@Column(name="unit_price")
+	@NotNull
 	private double unitPrice;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="cat_id")
+	@NotNull
 	private RoomCategory roomCategory;
 }

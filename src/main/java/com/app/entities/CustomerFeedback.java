@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,8 +24,11 @@ public class CustomerFeedback {
 	@Column(name="cfeedback_id")
 	private int cfeedbackId;
 	@Column(length=50)
+	@NotNull
 	private String feedback;
+	@NotNull
 	private LocalDate date;
 	@Column(name="booking_id")
+	@NotNull
 	private int bookingId;
 }

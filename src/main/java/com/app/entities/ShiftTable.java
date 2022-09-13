@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,13 +28,17 @@ public class ShiftTable {
 	@Column(name="shift_id")
 	private int shiftId;
 	@Column(name="start_time")
+	@NotNull
 	private Time startTime;
 	@Column(name="end_time")
+	@NotNull
 	private Time endTime;
+	@NotNull
 	private LocalDate date;
 	@Column(length=100)
 	private String instructions;
 	@OneToOne
 	@JoinColumn(name="dept_id")
+	@NotNull
 	private Department department;
 }

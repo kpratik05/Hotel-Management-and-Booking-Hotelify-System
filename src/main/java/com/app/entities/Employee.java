@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,5 +25,6 @@ public class Employee extends Person {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="dept_id")
+	@NotNull
 	private Department department;
 }

@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +20,9 @@ public class EmployeeFeedback {
 	@Column(name="employeefeedback_id")
 	private int employeeFeedbackId;
 	@Column(length=50)
+	@NotNull
 	private String feedback;
+	@NotNull
 	private LocalDate date;
 	
 }

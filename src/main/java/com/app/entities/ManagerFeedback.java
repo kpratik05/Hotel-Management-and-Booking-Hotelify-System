@@ -5,6 +5,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,5 +21,6 @@ import lombok.ToString;
 public class ManagerFeedback extends EmployeeFeedback {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="manager_id")
+	@NotNull
 	private Manager manager;
 }

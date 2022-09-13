@@ -1,21 +1,32 @@
 package com.app.entities;
 
 import java.time.LocalDate;
-import javax.persistence.*;
-import lombok.*;
+
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotNull;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @MappedSuperclass
 @Setter
 @Getter
 public class Person {
 	@Column(length=20)
+	@NotNull
 	private String name;
 	@Column(length=20)
+	@NotNull
 	private String email;
 	@Column(length=20)
+	@NotNull
 	private String address;
-	private int mobile_no;
+	@NotNull
+	private int mobileNo;
 	@Column(length=20)
+	@NotNull
 	private String password;
-	private LocalDate birth_date;
+	@NotNull
+	private LocalDate birthDate;
 }

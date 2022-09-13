@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,15 +28,20 @@ public class ServiceOrders {
 	@Column(name="order_id")
 	private int orderId;
 	@Column(name="order_date")
+	@NotNull
 	private LocalDate orderDate;
 	@Column(name="order_time")
+	@NotNull
 	private Time orderTime;
 	@Column(name="order_amount")
+	@NotNull
 	private double orderAmount;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="map_id")
+	@NotNull
 	private BookingMap bookingMap;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="service_id")
+	@NotNull
 	private Services service;
 }
