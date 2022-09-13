@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -20,6 +21,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
 public class Payment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -31,9 +33,8 @@ public class Payment {
 	private PaymentMode paymentMode;
 	@Column(name="total_amount")
 	private double totalAmount;
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="employee_id")
-	private Employee employee;
+	@Column(name="employee_id")
+	private int employeeId;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="booking_id")
 	private Booking booking;

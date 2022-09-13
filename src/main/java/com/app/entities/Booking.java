@@ -24,7 +24,7 @@ public class Booking {
 	private double totalAmount;
 	@Embedded
 	private Status status;
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name="customer_id")
 	private Customer customer;
 }

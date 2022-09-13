@@ -22,7 +22,7 @@ public class Services {
 	private int serivecId;
 	@Column(length=20,name="service_name")
 	private String serviceName;
-	@Column(length=50,name="service_name")
+	@Column(length=50,name="service_desc")
 	private String serviceDesc;
 	@Column(name="service_unit_price")
 	private double serviceUnitPrice;
