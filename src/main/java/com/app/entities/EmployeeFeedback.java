@@ -8,12 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
-import lombok.Getter;
-import lombok.Setter;
-
 @MappedSuperclass
-@Setter
-@Getter
 public class EmployeeFeedback {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -10,12 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
-import lombok.Getter;
-import lombok.Setter;
-
 @MappedSuperclass
-@Getter
-@Setter
 
 public class Employee extends Person {
 	@Id

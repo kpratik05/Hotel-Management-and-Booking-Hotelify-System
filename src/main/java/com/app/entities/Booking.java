@@ -21,7 +21,6 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
 public class Booking {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

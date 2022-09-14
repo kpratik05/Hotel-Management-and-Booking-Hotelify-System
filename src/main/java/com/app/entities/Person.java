@@ -6,12 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
-import lombok.Getter;
-import lombok.Setter;
-
 @MappedSuperclass
-@Setter
-@Getter
 public class Person {
 	@Column(length=20)
 	@NotNull
