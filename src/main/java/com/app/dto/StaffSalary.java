@@ -1,0 +1,13 @@
+package com.app.dto;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+public class StaffSalary extends EmployeeSalary {
+	
+	private StaffDTO staff;
+}

@@ -1,5 +1,13 @@
 package com.app.services;
 
-public interface IReservationStatusService {
+import java.time.LocalDate;
+import java.util.List;
 
+import com.app.entities.Room;
+
+public interface IReservationStatusService {
+	
+	public void getRoomReservations(LocalDate checkIn,LocalDate checkOut);
+	
+	public List<Room> getAvailableRooms();
 }

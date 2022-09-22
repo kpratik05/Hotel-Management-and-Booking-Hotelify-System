@@ -33,7 +33,8 @@ public class ReservationStatus {
 	@Column(name="check_out_date")
 	@NotNull
 	private LocalDate checkOutDate;
-	@NotNull
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="status")
 	private Status status;
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="cat_id")

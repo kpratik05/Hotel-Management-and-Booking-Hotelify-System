@@ -25,7 +25,8 @@ public class Room {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="room_id")
 	private int roomId;
-	
+	@Column(length=10)
+	private String roomNum;
 	@Column(name="floor_num")
 	@NotNull
 	private int floorNum;

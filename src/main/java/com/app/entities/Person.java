@@ -6,12 +6,19 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 @MappedSuperclass
+@Getter
+@Setter
+@ToString
 public class Person {
 	@Column(length=20)
 	@NotNull
 	private String name;
-	@Column(length=20)
+	@Column(length=30)
 	@NotNull
 	private String email;
 	@Column(length=20)

@@ -29,7 +29,8 @@ public class Payment {
 	@Column(name="payment_date")
 	@NotNull
 	private LocalDate paymentDate;
-	@Column(name="payment_mode")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="paymentmode_id")
 	@NotNull
 	private PaymentMode paymentMode;
 	@Column(name="total_amount")

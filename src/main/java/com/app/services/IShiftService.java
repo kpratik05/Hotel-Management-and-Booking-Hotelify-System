@@ -1,5 +1,7 @@
 package com.app.services;
 
-public interface IShiftService {
+import com.app.dto.ShiftTableDTO;
 
+public interface IShiftService {
+	public ShiftTableDTO getFromId(int id);
 }

@@ -1,8 +1,8 @@
 package com.app.entities;
 import java.time.LocalDate;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -31,18 +30,21 @@ public class Booking {
 	private LocalDate checkInDate;
 	@NotNull
 	private LocalDate checkOutDate;
-	@Embedded
-	private BookingMode mode;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="bookingmode_id")
+	private BookingMode bookingMode;
 	@NotNull
 	private double bookingAmount;
 	@NotNull
 	private int totalDays;
 	@NotNull
 	private double totalAmount;
-	@Embedded
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="status_id")
+	@NotNull
 	private Status status;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="customer_id")
 	@NotNull
-	private Customer customer;
+	private Customer customerInfo;
 }
