@@ -30,7 +30,7 @@ public class Booking {
 	private LocalDate checkInDate;
 	@NotNull
 	private LocalDate checkOutDate;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="bookingmode_id")
 	private BookingMode bookingMode;
 	@NotNull
@@ -39,11 +39,11 @@ public class Booking {
 	private int totalDays;
 	@NotNull
 	private double totalAmount;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="status_id")
 	@NotNull
 	private Status status;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="customer_id")
 	@NotNull
 	private Customer customerInfo;

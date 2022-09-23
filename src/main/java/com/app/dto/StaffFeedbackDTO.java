@@ -7,9 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class StaffDTO extends EmployeeDTO {
+public class StaffFeedbackDTO extends EmployeeFeedbackDTO {
 	
-	
-	private int shift;
-	private int role;
+	private int staff;
 }

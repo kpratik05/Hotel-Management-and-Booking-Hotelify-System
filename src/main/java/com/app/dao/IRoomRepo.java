@@ -13,4 +13,6 @@ public interface IRoomRepo extends JpaRepository<Room, Integer> {
 	@Query("select r from Room r left join fetch r.roomCategory")
 	public List<Room> getAllRooms();
 	
+	@Query("select r from Room r left join fetch r.roomCategory where r.roomId=?1")
+	public Room getRoom(int id);
 }

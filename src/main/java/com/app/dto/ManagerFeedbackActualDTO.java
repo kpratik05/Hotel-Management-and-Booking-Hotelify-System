@@ -4,12 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
 @Setter
+@Getter
 @ToString
-public class StaffDTO extends EmployeeDTO {
+public class ManagerFeedbackActualDTO extends EmployeeFeedbackDTO {
 	
-	
-	private int shift;
-	private int role;
+	private ManagerDTO manager;
 }

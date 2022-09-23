@@ -24,7 +24,7 @@ public class Employee extends Person {
 	@Column(name="employee_id")
 	private int employeeId;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="dept_id")
 	@NotNull
 	private Department department;

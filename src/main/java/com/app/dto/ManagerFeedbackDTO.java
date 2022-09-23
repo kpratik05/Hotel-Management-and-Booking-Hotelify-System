@@ -7,7 +7,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class ManagerFeedback extends EmployeeFeedback {
+public class ManagerFeedbackDTO extends EmployeeFeedbackDTO {
 	
-	private ManagerDTO manager;
+	private int manager;
 }

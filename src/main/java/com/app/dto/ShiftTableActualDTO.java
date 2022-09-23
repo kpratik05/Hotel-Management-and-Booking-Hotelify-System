@@ -14,7 +14,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ShiftTableDTO {
+public class ShiftTableActualDTO {
 	@JsonProperty("id")
 	private int shiftId;
 	@NotBlank

@@ -13,18 +13,18 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="Staff")
+@Table(name="staff")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 public class Staff extends Employee {
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="shift_id")
 	@NotNull
 	private ShiftTable shift;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="role_id")
 	@NotNull
 	private Role role;

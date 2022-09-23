@@ -10,6 +10,6 @@ import com.app.entities.Booking;
 
 @Repository
 public interface IBookingRepo extends JpaRepository<Booking, Integer> {
-	@Query("select b from Booking b left join fetch b.customerInfo left join fetch b.bookingMode")
+	@Query("select b from Booking b left join fetch b.customerInfo left join fetch b.bookingMode left join fetch b.status")
 	public List<Booking> getAllBookings();
 }

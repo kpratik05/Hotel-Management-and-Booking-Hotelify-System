@@ -1,11 +1,13 @@
 package com.app.entities;
 import java.time.LocalDate;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -21,14 +23,14 @@ import lombok.ToString;
 public class CustomerFeedback {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="cfeedback_id")
 	private int cfeedbackId;
-	@Column(length=50)
+	
 	@NotNull
 	private String feedback;
 	@NotNull
 	private LocalDate date;
-	@Column(name="booking_id")
+	@OneToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="booking_id")
 	@NotNull
-	private int bookingId;
+	private Booking booking;
 }

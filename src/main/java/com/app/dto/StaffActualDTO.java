@@ -1,6 +1,7 @@
 package com.app.dto;
 
 import com.app.entities.Role;
+import com.app.entities.ShiftTable;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +11,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class StaffActualDTO extends EmployeeActualDTO {
-	private ShiftTableDTO shift;
+	private ShiftTable shift;
 	private Role role;
 }

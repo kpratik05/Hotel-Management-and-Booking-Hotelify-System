@@ -1,5 +1,7 @@
 package com.app.services;
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +20,26 @@ public class ShiftServiceImpl implements IShiftService {
 	@Autowired
 	private ModelMapper mapper;
 	@Override
-	public ShiftTableDTO getFromId(int id) {
+	public ShiftTable getFromId(int id) {
 		ShiftTable  shift = shiftRepo.getShift(id);
-		ShiftTableDTO shiftDTO = mapper.map(shift, ShiftTableDTO.class);
-		return shiftDTO;
+		return shift;
+	}
+	@Override
+	public ShiftTable addShift(ShiftTableDTO shiftDTO) {
+		ShiftTable shift = mapper.map(shiftDTO, ShiftTable.class);
+		
+		return shiftRepo.save(shift);
+	}
+	@Override
+	public ShiftTable updateShift(ShiftTableDTO shiftDTO) {
+		System.out.println(shiftDTO);
+		ShiftTable shift = mapper.map(shiftDTO, ShiftTable.class);
+		return shiftRepo.save(shift);
+	}
+	@Override
+	public List<ShiftTable> getShiftList() {
+		// TODO Auto-generated method stub
+		return shiftRepo.getAllShift();
 	}
 
 }

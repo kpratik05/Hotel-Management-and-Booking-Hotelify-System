@@ -1,6 +1,4 @@
 package com.app.dto;
-
-import java.sql.Time;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
@@ -11,18 +9,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
 @Setter
+@Getter
 @ToString
-public class ShiftTableDTO {
-	@JsonProperty("id")
-	private int shiftId;
+public class EmployeeFeedbackDTO {
 	@NotBlank
-	private Time startTime;
-	@NotBlank
-	private Time endTime;
+	private String feedback;
 	@NotBlank
 	private LocalDate date;
-	@NotBlank
-	private String instructions;
+	
 }

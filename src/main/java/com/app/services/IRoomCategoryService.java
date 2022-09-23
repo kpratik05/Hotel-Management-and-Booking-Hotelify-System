@@ -1,5 +1,7 @@
 package com.app.services;
 
-public interface IRoomCategoryService {
+import com.app.entities.RoomCategory;
 
+public interface IRoomCategoryService {
+	public RoomCategory getRoomCategory(int id);
 }
