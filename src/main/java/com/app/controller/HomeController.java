@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ import com.app.services.IReservationStatusService;
 import com.app.services.IRoomService;
 import com.app.services.IServicesService;
 
-
+@CrossOrigin(origins = {"http://localhost:3000"})
 @Controller
 @RequestMapping("/")
 public class HomeController {
@@ -37,10 +38,10 @@ public class HomeController {
 	@Autowired
 	public ICustomerService customerService;
 	
-	@GetMapping
+	@GetMapping("/")
 	public ResponseEntity<?> getHomePage()
 	{
-		return ResponseEntity.ok("Hello");
+		return new ResponseEntity<>("Hello 007",HttpStatus.OK);
 	}
 	
 	@GetMapping("/rooms")
@@ -73,8 +74,10 @@ public class HomeController {
 	@GetMapping("/services/{servicename}")
 	public ResponseEntity<?> getHotelServiceDetails(@PathVariable String servicename)
 	{
-		Services services = servicesService.getServiceDetails(servicename);
-		return new ResponseEntity<>(services,HttpStatus.OK);
+		System.out.println("break "+servicename);
+		Services service = servicesService.getServiceDetails(servicename);
+		System.out.println(service);
+		return new ResponseEntity<>(service,HttpStatus.OK);
 	}
 	
 	@GetMapping("/checkroom")
