@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,15 +16,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.app.dto.EmployeeLoginInfoDTO;
+import com.app.dto.ManagerActualDTO;
 import com.app.dto.ManagerDTO;
 import com.app.dto.StaffActualDTO;
 import com.app.dto.StaffDTO;
 import com.app.dto.StaffFeedbackDTO;
 import com.app.entities.Manager;
+import com.app.entities.ManagerLogin;
 import com.app.entities.Staff;
 import com.app.entities.StaffFeedback;
 import com.app.services.IManagerService;
-
+@CrossOrigin(origins = {"http://localhost:3000"})
 @Controller
 @RequestMapping("/manager")
 public class ManagerController {
@@ -42,13 +45,24 @@ public class ManagerController {
 		 System.out.println(loginInfo.getId()+" "+loginInfo.getPassword());
 		 Manager manager = managerService.managerVerification(loginInfo.getId(), loginInfo.getPassword());
 		 session.setAttribute("user", manager);
+		 Manager m = (Manager) session.getAttribute("user");
+		 System.out.println("login "+m.getName());
 		 return new  ResponseEntity<>(manager,HttpStatus.OK);
 	 }
 	 
-	 @GetMapping("/profile")
-	 public ResponseEntity<?> getProfile(HttpSession session)
+	 @GetMapping("/logout")
+	 public ResponseEntity<?> logoutManager(HttpSession session)
 	 {
-		 return new ResponseEntity<>(session.getAttribute("user"),HttpStatus.OK);
+		 session.removeAttribute("user");
+		 return new ResponseEntity<>("logged out seuccessfully",HttpStatus.OK);
+	 }
+	 
+	 @GetMapping("/profile/{id}")
+	 public ResponseEntity<?> getProfile(@PathVariable int id,HttpSession session)
+	 {
+		 System.out.println("manager profile "+session.getAttribute("user"));
+		 ManagerActualDTO m = managerService.findUsingId(id);
+		 return new ResponseEntity<>(m,HttpStatus.OK);
 	 }
 	 
 	 @GetMapping("/update")
@@ -60,18 +74,17 @@ public class ManagerController {
 	 }
 	 
 	 @PostMapping("/update")
-	 public ResponseEntity<?> updateManager(@RequestBody ManagerDTO manager,HttpSession session)
+	 public ResponseEntity<?> updateManager(@RequestBody ManagerActualDTO manager,HttpSession session)
 	 {
 		 Manager managerEnt = managerService.updateManagerDetails(manager);
 		 session.setAttribute("user", managerEnt);
 	     return new ResponseEntity<>(managerEnt, HttpStatus. OK);
 	 }
 	 
-	 @GetMapping("/stafflist")
-	 public ResponseEntity<?> getEmployeesFromDepartment(HttpSession session)
+	 @GetMapping("/stafflist/{deptId}")
+	 public ResponseEntity<?> getEmployeesFromDepartment(@PathVariable int deptId)
 	 {
-		 Manager manager = (Manager) session.getAttribute("user");
-		 int deptId = manager.getDepartment().getDeptId();
+		 System.out.println("Staff list "+deptId);
 		 List<Staff> staffList =managerService.getEmployeesInDepartment(deptId);
 		 return new ResponseEntity<>(staffList,HttpStatus.OK);
 	 }
@@ -79,8 +92,9 @@ public class ManagerController {
 	 @GetMapping("/employeedetails/{id}")
 	 public ResponseEntity<?> getEmployeeDetails(@PathVariable int id)
 	 {
+		 System.out.println("details employe "+id);
 		 StaffActualDTO staff = managerService.getEmployeeDetails(id);
-		 return ResponseEntity.ok(staff);
+		 return new ResponseEntity<>(staff,HttpStatus.OK);
 	 }
 	 
 	 @GetMapping("/assignshift/{id}")
@@ -110,12 +124,10 @@ public class ManagerController {
 //		 }
 	 }
 	 
-	 @GetMapping("/employeefeedback")
-	 public ResponseEntity<?> getEmployeeFeedbackOfDepartment(HttpSession session)
+	 @GetMapping("/employeefeedbacklist/{id}")
+	 public ResponseEntity<?> getEmployeeFeedbackOfDepartment(@PathVariable int id)
 	 {
-		 Manager manager = (Manager) session.getAttribute("user");
-		 int dept = manager.getDepartment().getDeptId();
-		 List<StaffFeedback> staffFeedback = managerService.getEmployeeFeedback(dept);
+		 List<StaffFeedback> staffFeedback = managerService.getEmployeeFeedback(id);
 		 return new ResponseEntity<>(staffFeedback,HttpStatus.OK);
 	 }
 	 
@@ -128,18 +140,21 @@ public class ManagerController {
 	 @PostMapping("/addfeedback/{id}")
 	 public ResponseEntity<?> addTwoFeedback(@RequestBody StaffFeedbackDTO staffDTO)
 	 {
+		 System.out.println(("addfeedback "+staffDTO.getStaff()));
 		 return new ResponseEntity<>(managerService.addFeedback(staffDTO),HttpStatus.CREATED);
 	 }
 	 
 	 @GetMapping("/employeefeedback/employee/{id}")
 	 public ResponseEntity<?> getEmployeeFeedback(@PathVariable int id)
 	 {
+		 System.out.println("fire "+id);
 		 return new ResponseEntity<>(managerService.getFeedbackFromEmployeeId(id),HttpStatus.OK);
 	 }
 	 
 	 @GetMapping("/employeefeedback/{id}")
 	 public ResponseEntity<?> getSpecificFeedback(@PathVariable int id)
 	 {
+		 
 		 return new ResponseEntity<>(managerService.getEmployeeFeedbackFromId(id),HttpStatus.OK);
 	 }
 	 
@@ -149,19 +164,16 @@ public class ManagerController {
 		 return new ResponseEntity<>(managerService.getPaymentList(),HttpStatus.OK);
 	 }
 	 
-	 @GetMapping("/stafflogin")
-	 public ResponseEntity<?> getStaffLogin(HttpSession session)
+	 @GetMapping("/stafflogin/{dept}")
+	 public ResponseEntity<?> getStaffLogin(@PathVariable int dept)
 	 {
-		 Manager manager = (Manager) session.getAttribute("user");
-		 int dept = manager.getDepartment().getDeptId();
 		 return new ResponseEntity<>(managerService.getStaffLoginFromDept(dept),HttpStatus.OK);
 	 }
 	 
-	 @GetMapping("/managerlogin")
-	 public ResponseEntity<?> getManagerLogin(HttpSession session)
+	 @GetMapping("/managerlogin/{id}")
+	 public ResponseEntity<?> getManagerLogin(@PathVariable int id,HttpSession session)
 	 {
-		 Manager manager = (Manager) session.getAttribute("user");
-		 int id = manager.getEmployeeId();
-		 return new ResponseEntity<>(managerService.getManagerLogin(id),HttpStatus.OK);
+		 List<ManagerLogin> manLoginList = managerService.getManagerLogin(id);
+		 return new ResponseEntity<>(manLoginList,HttpStatus.OK);
 	 }
 }

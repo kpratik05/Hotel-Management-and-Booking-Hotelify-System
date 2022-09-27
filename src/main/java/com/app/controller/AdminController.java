@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,30 +21,51 @@ import com.app.dto.ShiftTableDTO;
 import com.app.dto.StaffDTO;
 import com.app.entities.Admin;
 import com.app.services.IAdminService;
+import com.app.services.IBookingService;
 import com.app.services.IStaffService;
 
+@CrossOrigin(origins = {"http://localhost:3000"})
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 	@Autowired
 	private IAdminService adminService;
-	
+	@Autowired
+	private IBookingService bookingService;
 	@Autowired
 	private IStaffService staffService;
-	
-	
+		
 	 @GetMapping("/login")
 	 public ResponseEntity<?> getAdminLogin()
 	 {
 		 return ResponseEntity.ok("Enter admin ID and password");
 	 }
 	 
-	 @PostMapping("/login")
-	 public ResponseEntity<?> getAdminDetails(@RequestBody EmployeeLoginInfoDTO loginInfo,HttpSession session)
+	 @GetMapping("/admindetails/{id}")
+	 public ResponseEntity<?> getDetails(@PathVariable int id)
 	 {
-		 Admin admin = adminService.adminVerification(loginInfo.getId(), loginInfo.getPassword());
-		 session.setAttribute("user", admin);
+		 return new ResponseEntity<>(adminService.adminDetails(id),HttpStatus.OK);
+	 }
+	 
+	 @GetMapping("/logout")
+	 public ResponseEntity<?> logoutManager(HttpSession session)
+	 {
+		 session.removeAttribute("user");
+		 return new ResponseEntity<>("logged out seuccessfully",HttpStatus.OK);
+	 }
+	 
+	 @PostMapping("/login")
+	 public ResponseEntity<?> getAdminDetails(@RequestBody EmployeeLoginInfoDTO login)
+	 {
+		 System.out.println("login "+login.getId()+" "+login.getPassword());
+		 Admin admin = adminService.adminVerification(login.getId(), login.getPassword());
 		 return new  ResponseEntity<>(admin,HttpStatus.OK);
+	 }
+	 
+	 @GetMapping("/bookinglist")
+	 public ResponseEntity<?> getBookingList()
+	 {
+		 return new ResponseEntity<>(bookingService.getBookings(),HttpStatus.OK);
 	 }
 	 
 	 @GetMapping("/register/staff")
@@ -142,6 +165,24 @@ public class AdminController {
 	 public ResponseEntity<?> getShiftList()
 	 {
 		 return new ResponseEntity<>(adminService.getShiftList(),HttpStatus.OK);
+	 }
+	 
+	 @GetMapping("/managerlist")
+	 public ResponseEntity<?> getManagerList()
+	 {
+		 return new ResponseEntity<>(adminService.getManagerList(),HttpStatus.OK);
+	 }
+	 
+	 @GetMapping("/stafflist")
+	 public ResponseEntity<?> getStaffList()
+	 {
+		 return new ResponseEntity<>(adminService.getStaffList(),HttpStatus.OK);
+	 }
+	 
+	 @GetMapping("/stafflist/{id}")
+	 public ResponseEntity<?> getStaffDetails(@PathVariable int id)
+	 {
+		 return new ResponseEntity<>(staffService.getFromEmployeeId(id),HttpStatus.OK);
 	 }
 	 
 	 @GetMapping("/removeemployee/{id}")

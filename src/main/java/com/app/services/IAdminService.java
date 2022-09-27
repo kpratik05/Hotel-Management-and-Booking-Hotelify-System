@@ -16,6 +16,8 @@ import com.app.entities.Staff;
 public interface IAdminService {
 	public Admin adminVerification(int id,String password);
 	
+	public Admin adminDetails(int id);
+	
 	public Staff registerStaff(StaffDTO staffDTO);
 	
 	public Manager registerManager(ManagerDTO managerDTO);
@@ -37,4 +39,8 @@ public interface IAdminService {
 	public List<ShiftTable> getShiftList();
 	
 	public boolean removeEmployee(int id);
+	
+	public List<Manager> getManagerList();
+	
+	public List<Staff> getStaffList();
 }	

@@ -11,7 +11,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class EmployeeActualDTO extends PersonDTO {
-	@JsonProperty("id")
+	@JsonProperty("employeeId")
 	private int employeeId;
 	private Department department;
 }

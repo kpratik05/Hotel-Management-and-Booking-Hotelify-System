@@ -104,6 +104,24 @@ public class AdminServiceImpl implements IAdminService {
 		// TODO Auto-generated method stub
 		return staffService.removeEmployee(id);
 	}
+
+	@Override
+	public Admin adminDetails(int id) {
+		// TODO Auto-generated method stub
+		return adminRepo.getDetails(id);
+	}
+
+	@Override
+	public List<Manager> getManagerList() {
+		// TODO Auto-generated method stub
+		return managerService.getManagerList();
+	}
+
+	@Override
+	public List<Staff> getStaffList() {
+		// TODO Auto-generated method stub
+		return staffService.getAllStaff();
+	}
 	
 	
 	

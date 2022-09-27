@@ -19,7 +19,7 @@ public interface IManagerService {
 	
 	public ManagerActualDTO findUsingId(int id);
 	
-	public Manager updateManagerDetails(ManagerDTO manager);
+	public Manager updateManagerDetails(ManagerActualDTO manager);
 	
 	public List<Staff> getEmployeesInDepartment(int deptNo);
 	
@@ -37,6 +37,7 @@ public interface IManagerService {
 	
 	public List<Payment> getPaymentList();
 	
+	public List<Manager> getManagerList();
 	
 	public List<StaffLogin> getStaffLoginFromDept(int dept);
 	

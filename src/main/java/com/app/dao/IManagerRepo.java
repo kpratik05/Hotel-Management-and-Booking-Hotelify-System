@@ -20,5 +20,7 @@ public interface IManagerRepo extends JpaRepository<Manager, Integer> {
 	
 	@Query("select m from Manager m left join fetch m.department where m.employeeId=?1")
 	public Manager getFromId(int id);
-
+	
+	@Query("select m from Manager m left join fetch m.department")
+	public List<Manager> getList();
 }

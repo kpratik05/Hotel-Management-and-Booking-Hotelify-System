@@ -1,5 +1,7 @@
 package com.app.services;
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,6 +84,12 @@ public class StaffServiceImpl implements IStaffService {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public List<Staff> getAllStaff() {
+		// TODO Auto-generated method stub
+		return staffRepo.getStaffList();
 	}
 	
 	

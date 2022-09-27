@@ -10,4 +10,7 @@ import com.app.entities.Admin;
 public interface IAdminRepo extends JpaRepository<Admin, Integer> {
 	@Query("SELECT a FROM Admin a where a.adminId= ?1 and a.password=?2")
 	public Admin getAdminDetails(int id,String password);
+	
+	@Query("select a from Admin a where a.adminId=?1")
+	public Admin getDetails(int id);
 }

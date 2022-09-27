@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.app.dto.CheckInOutDTO;
+import com.app.dto.CheckRoomDTO;
 import com.app.entities.Room;
 import com.app.entities.Services;
 import com.app.services.ICustomerService;
@@ -97,6 +98,13 @@ public class HomeController {
 		reservationSerice.getRoomReservations(checkIn,checkOut);
 		List<Room> availableRooms = reservationSerice.getAvailableRooms();
 		return new ResponseEntity<>(availableRooms,HttpStatus.OK);
+	}
+	
+	@PostMapping("/availablerooms")
+	public ResponseEntity<?> getAvailableRooms(@RequestBody CheckRoomDTO checkDTO)
+	{
+		System.out.println("visited");
+		return new ResponseEntity<>(roomService.getAvailableRooms(checkDTO),HttpStatus.OK);
 	}
 	
 	@GetMapping("/login")

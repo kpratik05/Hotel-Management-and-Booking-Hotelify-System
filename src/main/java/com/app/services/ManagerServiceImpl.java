@@ -56,16 +56,9 @@ public class ManagerServiceImpl implements IManagerService {
 		return managerDTO;
 	}
 	@Override
-	public Manager updateManagerDetails(ManagerDTO managerDTO) {
-		ManagerActualDTO managerActual = findUsingId(managerDTO.getEmployeeId());
-		managerActual.setDepartment(deptService.getFromId(managerDTO.getDepartment()));
-		managerActual.setAddress(managerDTO.getAddress());
-		managerActual.setBirthDate(managerDTO.getBirthDate());
-		managerActual.setEmail(managerDTO.getEmail());
-		managerActual.setMobileNo(managerDTO.getMobileNo());
-		managerActual.setName(managerDTO.getName());
-		managerActual.setPassword(managerDTO.getPassword());
-		Manager manager = mapper.map(managerActual, Manager.class);
+	public Manager updateManagerDetails(ManagerActualDTO managerDTO) {
+		
+		Manager manager = mapper.map(managerDTO, Manager.class);
 		Manager managerAfter = managerRepo.save(manager);
 		return managerAfter;
 	}
@@ -144,6 +137,11 @@ public class ManagerServiceImpl implements IManagerService {
 		managerActual.setPassword(managerDTO.getPassword());
 		Manager manager = mapper.map(managerActual, Manager.class);
 		return managerRepo.save(manager);
+	}
+	@Override
+	public List<Manager> getManagerList() {
+		// TODO Auto-generated method stub
+		return managerRepo.getList();
 	}
 	
 	

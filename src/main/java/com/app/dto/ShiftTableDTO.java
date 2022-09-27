@@ -1,6 +1,5 @@
 package com.app.dto;
 
-import java.sql.Time;
 import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
@@ -18,9 +17,9 @@ public class ShiftTableDTO {
 	@JsonProperty("id")
 	private int shiftId;
 	@NotBlank
-	private Time startTime;
+	private String startTime;
 	@NotBlank
-	private Time endTime;
+	private String endTime;
 	@NotBlank
 	private LocalDate date;
 	@NotBlank

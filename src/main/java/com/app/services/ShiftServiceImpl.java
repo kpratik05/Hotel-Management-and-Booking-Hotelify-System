@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.dao.IShiftTableRepo;
+import com.app.dto.ShiftTableActualDTO;
 import com.app.dto.ShiftTableDTO;
 import com.app.entities.ShiftTable;
-
+import java.sql.Time;
 @Service
 @Transactional
 public class ShiftServiceImpl implements IShiftService {
@@ -26,14 +27,27 @@ public class ShiftServiceImpl implements IShiftService {
 	}
 	@Override
 	public ShiftTable addShift(ShiftTableDTO shiftDTO) {
-		ShiftTable shift = mapper.map(shiftDTO, ShiftTable.class);
+		ShiftTableActualDTO shiftActual = new ShiftTableActualDTO();
+		shiftActual.setShiftId(shiftDTO.getShiftId());
+		shiftActual.setStartTime(Time.valueOf(shiftDTO.getStartTime()));
+		shiftActual.setEndTime(Time.valueOf(shiftDTO.getEndTime()));
+		shiftActual.setDate(shiftDTO.getDate());
+		shiftActual.setInstructions(shiftDTO.getInstructions());
+		
+		ShiftTable shift = mapper.map(shiftActual, ShiftTable.class);
 		
 		return shiftRepo.save(shift);
 	}
 	@Override
 	public ShiftTable updateShift(ShiftTableDTO shiftDTO) {
 		System.out.println(shiftDTO);
-		ShiftTable shift = mapper.map(shiftDTO, ShiftTable.class);
+		ShiftTableActualDTO shiftActual = new ShiftTableActualDTO();
+		shiftActual.setShiftId(shiftDTO.getShiftId());
+		shiftActual.setStartTime(Time.valueOf(shiftDTO.getStartTime()));
+		shiftActual.setEndTime(Time.valueOf(shiftDTO.getEndTime()));
+		shiftActual.setDate(shiftDTO.getDate());
+		shiftActual.setInstructions(shiftDTO.getInstructions());
+		ShiftTable shift = mapper.map(shiftActual, ShiftTable.class);
 		return shiftRepo.save(shift);
 	}
 	@Override

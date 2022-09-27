@@ -1,5 +1,7 @@
 package com.app.dao;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,6 +15,9 @@ import com.app.entities.Staff;
 public interface IStaffRepo extends JpaRepository<Staff, Integer> {
 	@Query("select s from Staff s left join fetch s.department left join fetch s.shift left join fetch s.role where s.employeeId=?1")
 	public Staff getFromId(int id);
+	
+	@Query("select s from Staff s left join fetch s.department left join fetch s.shift left join fetch s.role")
+	public List<Staff> getStaffList();
 	
 	@Modifying
 	@Query("update Staff s set s.shift = :shift where s.employeeId = :id")
