@@ -46,9 +46,12 @@ public class RoomServiceImpl implements IRoomService {
 		Room room = mapper.map(roomActual,Room.class);
 		return roomRepo.save(room);
 	}
-
-
 	
+	@Override
+	public Room getRoomDetails(int id)
+	{
+		return roomRepo.getRoom(id);
+	}
 	
 	@Override
 	public Room updateRoom(RoomDTO roomDTO) {
@@ -76,7 +79,7 @@ public class RoomServiceImpl implements IRoomService {
 		rService.getRoomReservations(checkDTO.getCheckInDate(), checkDTO.getCheckOutDate());
 		List<Room> rooms = rService.getAvailableRooms();
 		
-		if(checkDTO.getRoomType()==1)
+		if(checkDTO.getRoomType()==5)
 		{
 			return getAvailableForAllCat(rooms,checkDTO);
 		}

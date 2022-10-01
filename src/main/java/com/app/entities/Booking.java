@@ -46,5 +46,5 @@ public class Booking {
 	@ManyToOne
 	@JoinColumn(name="customer_id")
 	@NotNull
-	private Customer customerInfo;
+	private Customer customer;
 }

@@ -12,4 +12,7 @@ import com.app.entities.Payment;
 public interface IPaymentRepo extends JpaRepository<Payment, Integer> {
 	@Query("select p from Payment p left join fetch p.booking left join fetch p.paymentMode")
 	public List<Payment> getPaymentList();
+	
+	@Query("select p from Payment p left join fetch p.booking left join fetch p.paymentMode where p.booking.customer.customerId = ?1")
+	public List<Payment> getCustomerPayment(int id);
 }

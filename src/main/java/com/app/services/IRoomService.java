@@ -21,4 +21,6 @@ public interface IRoomService {
 	public List<Room> getAvailableForAllCat(List<Room> rooms,CheckRoomDTO checkDTO);
 	
 	public List<Room> getAvailbleForSpecificCatAndSort(List<Room> rooms,CheckRoomDTO checkDTO);
+	
+	public Room getRoomDetails(int id);
 }

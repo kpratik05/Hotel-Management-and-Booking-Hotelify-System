@@ -10,6 +10,6 @@ import lombok.ToString;
 @Getter
 @ToString
 public class CustomerDTO extends PersonDTO {
-	@JsonProperty("id")
+	@JsonProperty("customerId")
 	private int customerId;
 }

@@ -8,6 +8,6 @@ import com.app.entities.PaymentMode;
 
 @Repository
 public interface IPaymentModeRepo extends JpaRepository<PaymentMode, Integer> {
-	@Query("select p from PaymentMode p where p.id=id")
+	@Query("select p from PaymentMode p where p.id=?1")
 	public PaymentMode getFromId(int id);
 }

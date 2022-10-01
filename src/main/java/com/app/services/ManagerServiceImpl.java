@@ -1,5 +1,6 @@
 package com.app.services;
 
+import java.time.LocalTime;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -43,9 +44,16 @@ public class ManagerServiceImpl implements IManagerService {
 	private IStaffLoginService staffLoginService;
 	@Autowired
 	private IManagerLoginService managerLoginService;
+	@Autowired
+	private IManagerLoginService manLoginService;
 	@Override
 	public Manager managerVerification(int id, String password) {
 		Manager manager = managerRepo.findByIdAndPassword(id,password);
+		ManagerLogin manLog = new ManagerLogin();
+		manLog.setManager(manager);
+		manLog.setDate(java.time.LocalDate.now());
+		manLog.setLoginTime(java.sql.Time.valueOf(LocalTime.now()));
+		manLoginService.loginEntry(manLog);
 		return manager;
 	}
 	@Override

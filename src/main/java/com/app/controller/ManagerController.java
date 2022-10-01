@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.app.dto.BookingDTO;
 import com.app.dto.EmployeeLoginInfoDTO;
 import com.app.dto.ManagerActualDTO;
-import com.app.dto.ManagerDTO;
 import com.app.dto.StaffActualDTO;
 import com.app.dto.StaffDTO;
 import com.app.dto.StaffFeedbackDTO;
@@ -25,6 +25,7 @@ import com.app.entities.Manager;
 import com.app.entities.ManagerLogin;
 import com.app.entities.Staff;
 import com.app.entities.StaffFeedback;
+import com.app.services.IBookingService;
 import com.app.services.IManagerService;
 @CrossOrigin(origins = {"http://localhost:3000"})
 @Controller
@@ -32,6 +33,9 @@ import com.app.services.IManagerService;
 public class ManagerController {
 	@Autowired
 	private IManagerService managerService;
+	
+	@Autowired
+	private IBookingService bookingService;
 	
 	 @GetMapping("/login")
 	 public ResponseEntity<?> getManagerLogin()
@@ -108,6 +112,7 @@ public class ManagerController {
 	 @PostMapping("/assignshift/{id}")
 	 public ResponseEntity<?> assignPostMethod(@RequestBody StaffDTO staffDTO)
 	 {
+		 System.out.println("change shift : "+staffDTO.getShift());
 		 Staff staff =  managerService.assignShift(staffDTO);
 		 return new ResponseEntity<>(staff,HttpStatus.OK);
 //		 if(staff!=null)
@@ -175,5 +180,11 @@ public class ManagerController {
 	 {
 		 List<ManagerLogin> manLoginList = managerService.getManagerLogin(id);
 		 return new ResponseEntity<>(manLoginList,HttpStatus.OK);
+	 }
+	 
+	 @PostMapping("/bookroom/{id}")
+	 public ResponseEntity<?> bookRoom(@RequestBody BookingDTO booking,@PathVariable int id )
+	 {
+		 return new ResponseEntity<>(bookingService.bookRoom(id, booking),HttpStatus.OK);
 	 }
 }

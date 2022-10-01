@@ -22,11 +22,7 @@ public class EmployeeLogin {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="login_id")
 	private int loginId;
-	@Column(name="login_time")
-	@NotNull
 	private Time loginTime;
-	@Column(name="logout_time")
-	@NotNull
 	private Time logoutTime;
 	@NotNull
 	private LocalDate date;

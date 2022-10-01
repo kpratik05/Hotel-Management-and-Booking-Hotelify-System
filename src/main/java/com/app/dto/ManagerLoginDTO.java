@@ -9,5 +9,5 @@ import lombok.ToString;
 @ToString
 public class ManagerLoginDTO extends EmployeeLoginInfoDTO {
 	
-	private ManagerDTO manager;
+	private int manager;
 }

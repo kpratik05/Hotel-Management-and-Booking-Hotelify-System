@@ -26,4 +26,7 @@ public interface IStaffRepo extends JpaRepository<Staff, Integer> {
 	@Modifying
 	@Query("delete from Staff s where s.employeeId=:id")
 	void deleteStaffFromId(int id);
+	
+	@Query("Select s FROM Staff s WHERE s.employeeId=?1 and s.password=?2")
+	Staff findByIdAndPassword(int id, String password);
 }

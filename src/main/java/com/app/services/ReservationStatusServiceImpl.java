@@ -39,4 +39,12 @@ public class ReservationStatusServiceImpl implements IReservationStatusService {
 		
 		return availableRooms;
 	}
+
+	@Override
+	public void saveReservation(ReservationStatus res) {
+		// TODO Auto-generated method stub
+		reservationRepo.save(res);
+	}
+	
+	
 }

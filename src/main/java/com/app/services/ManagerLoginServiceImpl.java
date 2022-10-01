@@ -28,4 +28,10 @@ public class ManagerLoginServiceImpl implements IManagerLoginService {
 		return managerLoginRepo.getLoginManager(id);
 	}
 
+	@Override
+	public void loginEntry(ManagerLogin login) {
+		// TODO Auto-generated method stub
+		 managerLoginRepo.save(login);
+	}
+
 }
