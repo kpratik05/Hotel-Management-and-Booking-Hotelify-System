@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import ManagerService from '../Service/ManagerService';
+import AdminService from '../Service/AdminService';
 
 const EmployeeInfo =()=>
 {
@@ -26,7 +26,7 @@ const EmployeeInfo =()=>
 
     const loadData =()=> {
         console.log("empid "+id);
-        ManagerService.getEmployeeDetails(id).then(response => {
+        AdminService.getStaffDetails(id).then(response => {
             console.log("emp "+response.data);
             setStaff(response.data);
         }).catch(function (ex) {
@@ -37,6 +37,9 @@ const EmployeeInfo =()=>
     
     return(
         <div>
+            <div>
+                <Link to={`/admin/removestaff/${staff.employeeId}`}><button name="delete">Remove Employee</button></Link>
+            </div>
         <h5>Id : {staff.employeeId}</h5>
         <h5>Name  : {staff.name}</h5>
         <h5>Mobile No  : {staff.mobileNo}</h5>
@@ -48,10 +51,7 @@ const EmployeeInfo =()=>
         <h5>Shift  : {staff.shift.startTime} - {staff.shift.endTime}</h5>
         <div>
             <Link to={`/manager/addfeedback/${staff.employeeId}`}><button name="button">Give Feedback</button></Link>
-            &emps;
             <Link to={`/manager/feedback/${staff.employeeId}`}><button name="button">Previous Feedback</button></Link>
-            &emps;
-            <Link to={`/manager/setshift/${staff.employeeId}`}><button name="button">Change Shift</button></Link>
         </div>
         </div>
     )

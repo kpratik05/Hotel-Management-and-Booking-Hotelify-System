@@ -1,19 +1,18 @@
 import React,{useState,useRef,useEffect} from 'react';
-import ManagerService from "../Service/ManagerService";
+import AdminService from "../Service/AdminService";
 import { useHistory} from 'react-router-dom';
 import "./Login.css";
 
-const Managerlogin =()=> {
+const Adminlogin =()=> {
     const history = useHistory();
-    const [manager,setManager] = useState({
+    const [admin,setAdmin] = useState({
         name:"",
         email:"",
         address:"",
         mobileNo:0,
         password:"",
-        birthDate:null,
-        employeeId:0,
-        department:null
+        birthDate:'',
+        adminId:0,
     });
     const errRef = useRef();
 
@@ -31,7 +30,7 @@ const Managerlogin =()=> {
         password:""
     });
     const [errMsg, setErrMsg] = useState('');
-    // const [err,setError] = useState(false);
+
     const {id,password} = login;
 
     const onInputChange = (e) =>{
@@ -42,44 +41,14 @@ const Managerlogin =()=> {
         setErrMsg('');
     }, [id, password])
 
-    // function validateUser()
-    //         {
-    //             let un = document.getElementById("exampleInputEmail1").value;
-    //             if(un.trim().length==0)
-    //             {
-    //                 document.getElementById("ierr").innerHTML="Username can not be empty or with spaces";
-    //                 return false;
-    //             }
-    //             else
-    //             {
-    //                 document.getElementById("ierr").innerHTML="";
-    //                 return true;
-    //             }
-    //         }
-    //         function validatePassword()
-    //         {
-    //             let pass = document.getElementById("exampleInputPassword1").value;
-    //             if(pass.trim().length==0)
-    //             {
-    //                 document.getElementById("perr").innerHTML="Password can not be empty or with spaces";
-    //                 return false;
-    //             }
-    //             else
-    //             {
-    //                 document.getElementById("perr").innerHTML="";
-    //                 return true;
-    //             }
-    //         }
-
     const handleSubmit = async(e) =>  {
         e.preventDefault();
+        console.log("Manager login "+login.id+" "+login.password)
 
         
-        
-
-            await ManagerService.getFromLogin(login).then(response => {
-                console.log("Info "+response.data.employeeId);
-                 setManager(response.data);
+            await AdminService.getAdminLogin(login).then(response => {
+                console.log("Info "+response.data.adminId);
+                 setAdmin(response.data);
                  
              }
             
@@ -98,19 +67,19 @@ const Managerlogin =()=> {
             errRef.current.focus();
         }
                );
+
+            console.log("employee id "+admin.adminId+" "+admin.email);
                 
                window.localStorage.setItem("isLoggedIn",true);
-               window.localStorage.setItem("id",manager.employeeId);
-               window.localStorage.setItem("usertype","manager");
-               window.localStorage.setItem("deptId",manager.department.deptId);
-               document.getElementById("loginstatus").innerHTML="login success";
-               window.alert("Manager logged in successfully !");
+               window.localStorage.setItem("id",admin.adminId);
+               window.localStorage.setItem("usertype","admin");
+               window.alert("Admin logged in successfully !");
                setTimeout(()=>{
                 history.push("/");
 
             },5000)
         }
-    
+
     
         return (
             <div>
@@ -122,10 +91,10 @@ const Managerlogin =()=> {
                                 <a class="nav-link" href="/stafflogin">Staff login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="/managerlogin">Manager login</a>
+                                <a class="nav-link" href="/managerlogin">Manager login</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/adminlogin">Admin login</a>
+                                <a class="nav-link active" href="/adminlogin">Admin login</a>
                             </li>
                         </ul>
                     </div>
@@ -135,17 +104,15 @@ const Managerlogin =()=> {
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Employee Id</label>
                                 <input type="number" class="form-control" id="exampleInputEmail1"  placeholder="Enter id" name="id" value={id} onChange={e => onInputChange(e)} />
-                                <h2 id="ierr"></h2>
+
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
                                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" value={password} onChange={e => onInputChange(e)}/>
-                                <h2 id="perr"></h2>
                             </div>
                             <div class="but">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
-                            <h3 id="loginstatus"></h3>
                         </form>
                     </div>
                 </div>
@@ -156,4 +123,4 @@ const Managerlogin =()=> {
         )
 }
 
-export default Managerlogin;
+export default Adminlogin;

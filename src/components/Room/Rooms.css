@@ -1,0 +1,48 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    list-style: none;
+}
+
+.addroom{
+    text-align: right;
+    margin-right: 50px;
+}
+
+.butto{
+    text-align: right;
+}
+
+.roomc{
+    width: 900px;
+    height: 100px;
+    margin-top: 50px;
+    margin-bottom: 400px;
+    margin-left: 300px;
+}
+
+.form-inline{
+    text-align: left;
+    margin-left: 20px;
+}
+
+.button{
+    margin-right: 10px;
+    background-color: darkkhaki;
+    height: 30px;
+    width:100px;
+}
+
+.getrooms{
+    text-align: right;
+    margin-right: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.err{
+    color: red;
+}

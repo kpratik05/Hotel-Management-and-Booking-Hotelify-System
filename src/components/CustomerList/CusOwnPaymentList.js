@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
-import ManagerService from '../Service/ManagerService';
+import CustomerService from '../Service/CustomerService';
 import {Table} from 'react-bootstrap';
 
-class CustomerPaymnetList extends Component
+class CusOwnPaymnetList extends Component
 {
 
     constructor(props)
@@ -14,7 +14,8 @@ class CustomerPaymnetList extends Component
     }
 
     componentDidMount() {
-        ManagerService.getCustomerPaymnetList().then(response => {
+        const id = window.localStorage.getItem("id");
+        CustomerService.getPaymentList(id).then(response => {
             console.log("login list "+response.data);
             this.setState({payments:response.data});
             // console.log("after "+this.state.logins[2].staff.name);
@@ -61,4 +62,4 @@ class CustomerPaymnetList extends Component
     }
 }
 
-export default CustomerPaymnetList;
+export default CusOwnPaymnetList;

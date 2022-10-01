@@ -23,6 +23,16 @@ class ServicesService {
         console.log("get "+serviceName);
         return  axios.get(baseUrl+"services/"+serviceName)
     }
+
+    async getAvailableRooms(details)
+    {
+        return await axios.post(baseUrl+"availablerooms",details);
+    }
+
+    getRoomDetails(id)
+    {
+        return axios.get("http://localhost:8080/hotel/roomdetails/"+id);
+    }
 }       
 
 export default new ServicesService();

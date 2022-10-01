@@ -1,13 +1,13 @@
 import React,{useEffect,useState} from "react";
 import { useHistory } from "react-router-dom";
-import ManagerService from "../Service/ManagerService";
-const ManagerUpdate =()=>
+import StaffService from "../Service/StaffService";
+const StaffUpdate =()=>
 {
 
-    const managerId = window.localStorage.getItem("id");
+    const staffId = window.localStorage.getItem("id");
 
     const history = useHistory();
-    const [manager,setManager] = useState({
+    const [staff,setStaff] = useState({
         name:"",
         email:"",
         address:"",
@@ -15,14 +15,16 @@ const ManagerUpdate =()=>
         password:"",
         birthDate:'',
         employeeId:0,
-        department:''
+        department:'',
+        shift: 0,
+        role: 0
     });
 
     const onInputChange = (e) =>{
-        setManager({...manager,[e.target.name]:e.target.value})
+        setStaff({...staff,[e.target.name]:e.target.value})
     };
 
-    const {employeeId,name,email,address,mobileNo,password,birthDate,department} = manager;
+    const {employeeId,name,email,address,mobileNo,password,birthDate,department,shiftId,roleId} = staff;
 
     useEffect(() => {
         loadUser();
@@ -30,11 +32,11 @@ const ManagerUpdate =()=>
 
       const loadUser= async()=>
       {
-        console.log("ID "+managerId);
-        ManagerService.getManagerInfo(managerId).then(response => {
-            console.log("manager profile response "+response.data.email);
-            setManager(response.data);
-            console.log("manager name "+manager.name+" "+manager.id)
+        console.log("ID "+staffId);
+        StaffService.getStaffInfo(staffId).then(response => {
+            console.log("Staff profile response "+response.data.email);
+            setStaff(response.data);
+            console.log("Staff name "+staff.name+" "+staff.employeeId)
         }
         )
         .catch((err) => {
@@ -48,10 +50,14 @@ const ManagerUpdate =()=>
 
       const onSubmit = async e => {
         e.preventDefault();
-        ManagerService.updateManagerDetails(manager).then(response => {
-            console.log("manager profile response "+response.data.email);
-            setManager(response.data);
-            console.log("manager name "+manager.name+" "+manager.id)
+        staff.department = staff.department.deptId;
+        staff.shift = staff.shift.shiftId;
+        staff.role = staff.role.roleId;
+
+        StaffService.updateStaffDetails(staff).then(response => {
+            console.log("Staff profile response "+response.data.email);
+            setStaff(response.data);
+            console.log("Staff name "+staff.name+" "+staff.id)
         }
         )
         .catch((err) => {
@@ -62,7 +68,7 @@ const ManagerUpdate =()=>
             }
         });;
         window.alert("Updated successfully !");
-        history.push("/manager/profile");
+        history.push("/staff/profile");
       };
 
     return(
@@ -109,4 +115,4 @@ const ManagerUpdate =()=>
     )
 }
 
-export default ManagerUpdate;
+export default StaffUpdate;

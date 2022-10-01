@@ -1,14 +1,18 @@
 import React,{useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Logout =()=>
 {
-
+    const history = useHistory(); 
     const log =  window.localStorage.getItem("isLoggedIn");
 
     useEffect(()=>
     {
         window.localStorage.setItem("isLoggedIn",false);
         window.localStorage.removeItem("usertype");
+        setTimeout(()=>{
+            history.push("/");
+        },5000)
     },[])
 
     return(

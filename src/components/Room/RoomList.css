@@ -1,0 +1,25 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    list-style: none;
+}
+
+.addroom{
+    text-align: right;
+    margin-right: 50px;
+}
+
+.butto{
+    text-align: right;
+}
+
+.roomc {
+    width: 900px;
+    height: 100px;
+    margin-top: 50px;
+    margin-bottom: 400px;
+    margin-left: 300px;
+}

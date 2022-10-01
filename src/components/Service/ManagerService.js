@@ -57,6 +57,21 @@ class ManagerService{
         return axios.get(baseUrl+"customerpayment");
     }
 
+    getAllFeedback(id)
+    {
+        return axios.get(baseUrl+"employeefeedbacklist/"+id)
+    }
+
+    changeShift(staff)
+    {
+        console.log("Staff Id = "+staff.employeeId)
+        return axios.post(baseUrl+"assignshift/"+staff.employeeId,staff)
+    }
+
+    bookRoom(id,booking)
+    {
+        return axios.post(baseUrl+"bookroom/"+id,booking)
+    }
 }
 
 export default new ManagerService();
